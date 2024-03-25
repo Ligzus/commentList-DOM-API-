@@ -5,7 +5,6 @@ import { postComments } from './api.js';
 import { fetchComments } from "./main.js";
 
 export function renderPeoples(peoples) {
-    // commentListElement.textContent = 'Загружаю список комментариев...';
     const container = document.querySelector('.container');
     const list = '<ul id="commentList" class="comments"></ul>';
 
@@ -44,12 +43,9 @@ export function renderPeoples(peoples) {
         </div>`;
 
         const auth = '<p class="auth">Чтобы добавить комментарий, авторизуйтесь<p>';
-        container.innerHTML = `${list} ${user ? form : auth} `;
-
-        
+        container.innerHTML = `${list} ${user ? form : auth} `;        
 
         const commentListElement = document.getElementById('commentList');
-        commentListElement.textContent = 'Загружаю список комментариев...';
         commentListElement.innerHTML = commentsHtml;
 
         if (!user) {
