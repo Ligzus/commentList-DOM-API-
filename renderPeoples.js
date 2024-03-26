@@ -58,32 +58,36 @@ export function renderPeoples(peoples) {
 
 
     // Красим кнопку лайка и увеличиваем счетчик
+    if (!user) {
+        const likeButtons = document.querySelectorAll(".like-button");
+        likeButtons.forEach(button => {
+            button.removeEventListener("click", handleLikeButtonClick);
+        });
+    }
+    
+    function handleLikeButtonClick(event) {
+        event.stopPropagation();
+        const index = event.currentTarget.dataset.index;    
+        const currentPeople = peoples[index];                    
+    
+        if (currentPeople.isLiked) {
+            currentPeople.likes--;
+        } else {
+            currentPeople.likes++;
+        }
+    
+        currentPeople.isLiked = !currentPeople.isLiked;
+    
+        renderPeoples(peoples);
+    }
+    
     if (user) {
-        for (let button of document.querySelectorAll(".like-button")) {
-            button.addEventListener("click", (event) => { 
-                event.stopPropagation();
-                const index = event.currentTarget.dataset.index;    
-                const currentPeople = peoples[index];                    
-
-                if (currentPeople.isLiked) {
-                    currentPeople.likes--;
-                } else {
-                    currentPeople.likes++;
-                };
-
-                currentPeople.isLiked = !currentPeople.isLiked;
-
-                renderPeoples(peoples);
-            });
-            
-        };
-    } else {
-        // for (let button of document.querySelectorAll(".like-button")) {
-        //     button.removeEventListener("click"); // Удаляем обработчик события клика
-        // }
-    };
-
-
+        const likeButtons = document.querySelectorAll(".like-button");
+        likeButtons.forEach(button => {
+            button.addEventListener("click", handleLikeButtonClick);
+        });
+    }
+    
 
     // НОВЫЙ КОММЕНТАРИЙ:
 
