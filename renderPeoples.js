@@ -78,9 +78,9 @@ export function renderPeoples(peoples) {
             
         };
     } else {
-        for (let button of document.querySelectorAll(".like-button")) {
-            button.removeEventListener("click"); // Удаляем обработчик события клика
-        }
+        // for (let button of document.querySelectorAll(".like-button")) {
+        //     button.removeEventListener("click"); // Удаляем обработчик события клика
+        // }
     };
 
 
