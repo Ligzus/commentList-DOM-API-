@@ -31,12 +31,38 @@ export const renderLogin = () => {
 
     buttonElement.addEventListener("click", (event) => {
         event.preventDefault(); // предотвращаем стандартное поведение отправки формы
+
+        // Проверка на пустые данные
+        if (loginInputElement.value.trim() === '' || passwordInputElement.value.trim() === '') {
+            alert('Введите логин и пароль');
+            return;
+        }
+
+        // Проверка на пробелы
+        if (loginInputElement.value.trim().length === 0 || passwordInputElement.value.trim().length === 0) {
+            alert('Логин и пароль не могут состоять только из пробелов');
+            return;
+        }
+
         login({
             login: loginInputElement.value,
             password: passwordInputElement.value,
-        }).then((responseData) => {
+        })
+        .then((responseData) => {
             setUser(responseData.user); 
             renderPeoples(peoples);
         })
+        .catch((error) => {
+            if (error.response && error.response.status === 400) {
+                alert('Неверный логин или пароль');
+            } else {
+                console.error('Произошла ошибка при авторизации:', error);
+                alert('Произошла ошибка при авторизации');
+            }
+        
+            renderLogin();
+        });     
+        
+        
     });
 };
