@@ -48,21 +48,21 @@ export const renderLogin = () => {
             login: loginInputElement.value,
             password: passwordInputElement.value,
         })
+        .then((response) => {
+            if (response.status === 400) {
+                throw new Error('Неверный запрос')
+            }
+        })
         .then((responseData) => {
             setUser(responseData.user); 
             renderPeoples(peoples);
         })
         .catch((error) => {
-            if (error.response && error.response.status === 400) {
+            if (error.message === 'Неверный запрос') {
                 alert('Неверный логин или пароль');
             } else {
-                console.error('Произошла ошибка при авторизации:', error);
-                alert('Произошла ошибка при авторизации');
-            }
-        
-            renderLogin();
-        });     
-        
-        
+                alert('Ошибка авторизации');
+            }  
+        })         
     });
 };
