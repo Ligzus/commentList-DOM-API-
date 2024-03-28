@@ -97,7 +97,7 @@ export function renderPeoples(peoples) {
     const nameInputElement = document.getElementById('name');
 
     // Назначаем обработчик клика на кнопку добавления комментария
-    buttonElement.addEventListener("click", () => {
+    buttonElement?.addEventListener("click", () => {
         // Удаляем пробелы из значений полей ввода
         const trimmedName = nameInputElement.value.trim();
         const trimmedText = textInputElement.value.trim();

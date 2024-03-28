@@ -40,7 +40,5 @@ export function login({ login, password }) {
             password,
         }),
 
-    }).then((response) => {
-        return response.json();
     })
 };

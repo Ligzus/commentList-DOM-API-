@@ -48,11 +48,13 @@ export const renderLogin = () => {
             login: loginInputElement.value,
             password: passwordInputElement.value,
         })
-        // .then((response) => {
-        //     if (response.status === 400) {
-        //         throw new Error('Неверный запрос')
-        //     }
-        // })
+        .then((response) => {
+            if (response.status === 400) {
+                throw new Error('Неверный запрос');
+            } else {
+                return response.json();
+            }
+        })
         .then((responseData) => {
             setUser(responseData.user); 
             renderPeoples(peoples);
@@ -61,7 +63,7 @@ export const renderLogin = () => {
             if (error.message === 'Неверный запрос') {
                 alert('Неверный логин или пароль');
             } else {
-                alert('Ошибка авторизации');
+                alert('Кажется, интернет прилег отдохнуть, проверь соединение...');
             }  
         })         
     });
