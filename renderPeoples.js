@@ -77,7 +77,7 @@ export function renderPeoples(peoples) {
         }
     
         currentPeople.isLiked = !currentPeople.isLiked;
-    
+        
         renderPeoples(peoples);
     }
     
@@ -86,6 +86,17 @@ export function renderPeoples(peoples) {
         likeButtons.forEach(button => {
             button.addEventListener("click", handleLikeButtonClick);
         });
+
+        // Ответ на комментарий
+        for (const commentElement of document.querySelectorAll(".comment")) {
+            commentElement.addEventListener("click", (event) => {
+                const index = event.currentTarget.dataset.index;
+                const currentPost = peoples[index];
+
+                textInputElement.value = `%BEGIN_QUOTE${currentPost.text} : ${currentPost.name}END_QUOTE%`;
+                textInputElement.style.whiteSpace = 'pre-line';
+            });
+        };
     }
     
 
@@ -157,15 +168,5 @@ export function renderPeoples(peoples) {
             document.getElementById('form-id').style.display = 'flex'; // Показать форму добавления комментария
         });
     });
-
-    // Ответ на комментарий
-    for (const commentElement of document.querySelectorAll(".comment")) {
-        commentElement.addEventListener("click", (event) => {
-            const index = event.currentTarget.dataset.index;
-            const currentPost = peoples[index];
-
-            textInputElement.value = `%BEGIN_QUOTE${currentPost.text} : ${currentPost.name}END_QUOTE%`;
-            textInputElement.style.whiteSpace = 'pre-line';
-        });
-    };
+    
 };
