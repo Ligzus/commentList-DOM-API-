@@ -1,5 +1,6 @@
 // Показать текст "Добавляю твой комментарий..."
-export const showAddingCommentMessage = (commentListElement) => {
+export const showAddingCommentMessage = () => {
+    const commentListElement = document.getElementById('commentList');
     const addingCommentMessage = document.createElement('div');
     addingCommentMessage.textContent = 'Добавляю твой комментарий...';
     addingCommentMessage.classList.add('adding-comment-message');
@@ -8,7 +9,7 @@ export const showAddingCommentMessage = (commentListElement) => {
 };
 
 // Скрыть текст "Добавляю твой комментарий..."
-export const hideAddingCommentMessage = (commentListElement) => {
+export const hideAddingCommentMessage = () => {
     const addingCommentMessage = document.querySelector('.adding-comment-message');
     if (addingCommentMessage) {
         addingCommentMessage.remove();        

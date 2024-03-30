@@ -181,7 +181,7 @@ a {
   background-color: #ffffff;
 }
 
-.login-button {
+#login-button {
   padding: 10px 20px;
   font-size: 18px;
   background-color: #bcec30;
@@ -193,5 +193,9 @@ a {
 
 .login-button:hover {
   opacity: 0.9;
+}
+
+.auth {
+  cursor: pointer;
 }
 
