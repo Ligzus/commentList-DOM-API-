@@ -1,6 +1,7 @@
-import { formattedDate } from './formatDate.js';
+// import { formattedDate } from './formatDate.js';
 import { getComments } from './api.js';
 import { renderPeoples } from './renderPeoples.js';
+import { format } from 'date-fns';
 
 //ПОЛУЧАЕМ КОММЕНТАРИИ ИЗ СЕРВЕРА:
 
@@ -15,7 +16,8 @@ export const fetchComments = () => {
             
             return {
                 name: comment.author.name,
-                time: formattedDate(comment.date),
+                // time: formattedDate(comment.date),
+                time: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
                 text: comment.text,
                 likes: 0,
                 isLiked: false,
